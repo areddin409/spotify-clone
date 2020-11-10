@@ -4,8 +4,8 @@ export const initialState = {
   playing: false,
   item: null,
   //TODO: REMOVE AFTER DEVELOPING....
-  token:
-    'BQAZNNtxiqccdm9E9PM8_6xix_XiULuqgRmRMnpZG1WZ8EuiRhSvD5sPsyGbDie0jrkewiSP1qnQsvIAnN34c2I60lmP3b6vwhsvs3JgaOaVyMT4jCnGVXORfhJ4f5fO_AF5i0gS7OyZsnuetBOhM2EH4QpnGT',
+  // token:
+  //   'BQAZNNtxiqccdm9E9PM8_6xix_XiULuqgRmRMnpZG1WZ8EuiRhSvD5sPsyGbDie0jrkewiSP1qnQsvIAnN34c2I60lmP3b6vwhsvs3JgaOaVyMT4jCnGVXORfhJ4f5fO_AF5i0gS7OyZsnuetBOhM2EH4QpnGT',
 };
 
 const reducer = (state, action) => {
@@ -23,6 +23,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         token: action.token,
+      };
+    case 'SET_PLAYLISTS':
+      return {
+        ...state,
+        playlists: action.playlists,
       };
     default:
       return state;
