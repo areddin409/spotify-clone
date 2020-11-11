@@ -2,7 +2,7 @@
   height: 100vh;
   flex: 0.2;
   color: white;
-  min-width: 230px;
+  min-width: 175px;
   background-color: #040404;
   padding-left: 10px;
   padding-right: 10px;
@@ -18,4 +18,18 @@
   margin-left: 10px;
   padding: 5px;
   font-size: 12px;
+}
+
+@media screen and (max-width: 640px) {
+  .sidebar {
+    min-width: 150px;
+  }
+
+  .sidebar__logo {
+    height: 45px;
+  }
+  .sidebar__title {
+    margin-left: 5px;
+    font-size: 10px;
+  }
 }

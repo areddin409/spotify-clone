@@ -22,6 +22,7 @@
 }
 
 .body__info > img {
+  border-radius: 10px;
   height: 20vw;
   margin: 0 20px;
   box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
@@ -59,4 +60,28 @@
 .body__shuffle:hover {
   transition: 100ms transform ease-in;
   transform: scale(1.08);
+}
+
+@media screen and (max-width: 900px) {
+  .body__infoText > h2 {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .body__infoText > h2 {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .body__infoText > h2 {
+    font-size: 20px;
+  }
+  .body__infoText > p {
+    font-size: 12px;
+  }
+  strong {
+    font-size: 12px;
+  }
 }

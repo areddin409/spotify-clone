@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Footer.css';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
@@ -8,14 +8,19 @@ import ShuffleIcon from '@material-ui/icons/Shuffle';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import VolumeDownIcon from '@material-ui/icons/VolumeDown';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
+import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 
 import { Grid, Slider } from '@material-ui/core';
 import { useDataLayerValue } from './DataLayer';
 
 function Footer({ spotify }) {
-  const [{ token, item, playing }, dispatch] = useDataLayerValue();
+  const [{ item, playing }, dispatch] = useDataLayerValue();
+  const [volume, setVolume] = useState(75);
 
   useEffect(() => {
+    spotify.setVolume(volume);
     spotify.getMyCurrentPlaybackState().then((response) => {
       console.log('Res ->', response);
 
@@ -29,7 +34,7 @@ function Footer({ spotify }) {
         item: response.item,
       });
     });
-  }, [spotify, playing]);
+  }, [spotify, item, volume]);
 
   const handlePlayPause = () => {
     if (playing) {
@@ -73,6 +78,10 @@ function Footer({ spotify }) {
         item: r.item,
       });
     });
+  };
+
+  const handleVolumeChange = (e, newVolume) => {
+    setVolume(newVolume);
   };
 
   return (
@@ -120,10 +129,18 @@ function Footer({ spotify }) {
             <PlaylistPlayIcon />
           </Grid>
           <Grid item>
-            <VolumeDownIcon />
+            {volume >= 66 && <VolumeUpIcon />}
+            {volume < 66 && volume >= 33 && <VolumeDownIcon />}
+            {volume < 33 && volume > 0 && <VolumeMuteIcon />}
+            {volume === 0 && <VolumeOffIcon />}
           </Grid>
           <Grid item xs>
-            <Slider aria-labelledby='continuous-slider' />
+            <Slider
+              className='footer__slider'
+              aria-labelledby='continuous-slider'
+              value={volume}
+              onChange={handleVolumeChange}
+            />
           </Grid>
         </Grid>
       </div>

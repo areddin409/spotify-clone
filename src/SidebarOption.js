@@ -1,5 +1,6 @@
 import React from 'react';
 import './SidebarOption.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function SidebarOption({ title, Icon }) {
   return (

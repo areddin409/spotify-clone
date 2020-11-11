@@ -34,6 +34,13 @@ function App() {
         });
       });
 
+      spotify.getMySavedTracks().then((response) =>
+        dispatch({
+          type: 'SET_LIBRARY',
+          library: response,
+        })
+      );
+
       dispatch({
         type: 'SET_SPOTIFY',
         spotify: spotify,

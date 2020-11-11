@@ -8,6 +8,7 @@ export const initialState = {
   top_artists: null,
   playing: false,
   item: null,
+  token: null,
 };
 
 const reducer = (state, action) => {
@@ -36,7 +37,11 @@ const reducer = (state, action) => {
         ...state,
         discover_weekly: action.discover_weekly,
       };
-
+    case 'SET_LIBRARY':
+      return {
+        ...state,
+        library: action.library,
+      };
     case 'SET_TOP_ARTISTS':
       return {
         ...state,
